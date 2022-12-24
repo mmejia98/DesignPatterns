@@ -1,44 +1,39 @@
-package patrones_estructurales.proxy;
+package patrones_estructurales.virtualproxy;
 
-public class ProxyServicio implements IServicio{
+public class ProxyServicio implements IServicio {
 
-    private IServicio servicio;
+    private IServicio servicio; //Costoso
     private Usuario usuario;
 
-    public ProxyServicio(IServicio servicio, Usuario usuario) {
-        this.servicio = servicio;
+    public ProxyServicio(Usuario usuario) {
+
         this.usuario = usuario;
     }
 
     @Override
     public void leer() {
-        this.servicio.leer();
+        this.obtenerServicio().leer();
     }
 
     @Override
     public void escribir() {
-        if(this.usuario.getNivelPermiso() >= 5){
-            this.servicio.escribir();
-        }else{
-            throw new UnsupportedOperationException("Error de seguridad!");
-        }
+        this.obtenerServicio().escribir();
     }
 
     @Override
     public void actualizar() {
-        if(this.usuario.getNivelPermiso() >= 5){
-            this.servicio.actualizar();
-        }else{
-            throw new UnsupportedOperationException("Error de seguridad!");
-        }
+        this.obtenerServicio().actualizar();
     }
 
     @Override
     public void eliminar() {
-        if(this.usuario.getNivelPermiso() >= 5){
-            this.servicio.eliminar();
-        }else{
-            throw new UnsupportedOperationException("Error de seguridad!");
+        this.obtenerServicio().eliminar();
+    }
+
+    private IServicio obtenerServicio(){
+        if(this.servicio == null){
+            this.servicio = new Servicio();//
         }
+        return (Servicio) this.servicio;
     }
 }

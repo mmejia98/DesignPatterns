@@ -1,4 +1,4 @@
-package patrones_estructurales.virtualproxy;
+package patrones_estructurales.proxy;
 
 public interface IServicio {
     void leer();

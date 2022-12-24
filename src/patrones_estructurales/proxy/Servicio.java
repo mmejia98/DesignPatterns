@@ -1,6 +1,6 @@
-package patrones_estructurales.virtualproxy;
+package patrones_estructurales.proxy;
 
-public class Servicio implements IServicio {
+public class Servicio implements IServicio{
 
     @Override
     public void leer() {

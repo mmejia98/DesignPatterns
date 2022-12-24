@@ -1,4 +1,4 @@
-package patrones_estructurales.virtualproxy;
+package patrones_estructurales.proxy;
 
 public class Usuario {
     private int nivelPermiso; // 1 - 5 //5 == Admin
